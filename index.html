@@ -1,147 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>CA Inter Planner — Study Operating System</title>
-<meta name="description" content="A personalized study operating system for CA Intermediate students." />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>Thomas Shelby AI Tools - Stage 2</title>
+<link rel='stylesheet' href='style.css'>
 </head>
-<body data-theme="dark">
-
-<!-- ============ APP SHELL ============ -->
-<div id="app" class="app hidden">
-
-  <!-- SIDEBAR -->
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-brand">
-      <div class="brand-mark">CA</div>
-      <div class="brand-text">
-        <span class="brand-title">CA Inter Planner</span>
-        <span class="brand-sub" id="brandAttempt">Attempt —</span>
-      </div>
-      <button class="sidebar-collapse-btn" id="sidebarCollapseBtn" aria-label="Collapse sidebar">
-        <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
-      </button>
-    </div>
-
-    <nav class="sidebar-nav" id="sidebarNav">
-      <button class="nav-item active" data-view="dashboard">
-        <svg viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
-        <span>Dashboard</span>
-      </button>
-      <button class="nav-item" data-view="subjects">
-        <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-        <span>Subjects</span>
-      </button>
-      <button class="nav-item" data-view="planner">
-        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-        <span>Planner</span>
-      </button>
-      <button class="nav-item" data-view="analytics">
-        <svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-4"/></svg>
-        <span>Analytics</span>
-      </button>
-      <button class="nav-item" data-view="vault">
-        <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12"/></svg>
-        <span>Study Vault</span>
-      </button>
-      <button class="nav-item" data-view="achievements">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.5 13.5L17 22l-5-3-5 3 1.5-8.5"/></svg>
-        <span>Achievements</span>
-      </button>
-      <button class="nav-item" data-view="settings">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-        <span>Settings</span>
-      </button>
-    </nav>
-
-    <div class="sidebar-footer">
-      <div class="streak-chip" id="streakChip">
-        <svg viewBox="0 0 24 24" class="flame"><path d="M12 2s5 5.5 5 10a5 5 0 0 1-10 0c0-1 .3-2 1-3 .2 1 1 1.5 1.5 1 .5-2 .5-4-1-6.5C10 2 11 2 12 2z"/></svg>
-        <span id="streakCount">0</span> day streak
-      </div>
-    </div>
-  </aside>
-
-  <!-- MAIN -->
-  <div class="main">
-    <!-- TOPBAR -->
-    <header class="topbar">
-      <button class="icon-btn mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
-        <svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
-      </button>
-      <h1 class="view-title" id="viewTitle">Dashboard</h1>
-
-      <div class="topbar-right">
-        <div class="exam-dial" id="examDial" title="Days remaining to exam">
-          <svg viewBox="0 0 64 64" class="dial-ring">
-            <circle cx="32" cy="32" r="27" class="dial-track"/>
-            <circle cx="32" cy="32" r="27" class="dial-fill" id="dialFillCircle"/>
-          </svg>
-          <div class="dial-center">
-            <span class="dial-number" id="dialDays">—</span>
-            <span class="dial-label">days</span>
-          </div>
-        </div>
-        <button class="icon-btn" id="themeToggleBtn" title="Toggle theme">
-          <svg viewBox="0 0 24 24" id="themeIcon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-        </button>
-      </div>
-    </header>
-
-    <!-- VIEWS -->
-    <main class="view-container" id="viewContainer">
-
-      <section class="view" id="view-dashboard"></section>
-      <section class="view" id="view-subjects"></section>
-      <section class="view" id="view-chapters"></section>
-      <section class="view" id="view-planner"></section>
-      <section class="view" id="view-analytics"></section>
-      <section class="view" id="view-vault"></section>
-      <section class="view" id="view-achievements"></section>
-      <section class="view" id="view-settings"></section>
-
-    </main>
-  </div>
-</div>
-
-<!-- ============ ONBOARDING WIZARD ============ -->
-<div class="onboarding" id="onboarding">
-  <div class="onboarding-card">
-    <div class="onboarding-progress">
-      <div class="onboarding-progress-fill" id="onboardProgressFill"></div>
-    </div>
-    <div class="onboarding-steps" id="onboardSteps">
-      <!-- injected by app.js -->
-    </div>
-  </div>
-</div>
-
-<!-- ============ CHAPTER DRAWER ============ -->
-<div class="drawer-overlay" id="drawerOverlay">
-  <aside class="drawer" id="chapterDrawer"></aside>
-</div>
-
-<!-- ============ TIMED QUESTION MODAL ============ -->
-<div class="modal-overlay" id="timerModalOverlay">
-  <div class="timer-modal" id="timerModal"></div>
-</div>
-
-<!-- ============ TOAST ============ -->
-<div class="toast-stack" id="toastStack"></div>
-
-<script src="js/data/chapters.js"></script>
-<script src="js/data/achievements.js"></script>
-<script src="js/storage.js"></script>
-<script src="js/planner.js"></script>
-<script src="js/analytics.js"></script>
-<script src="js/app.js"></script>
-<script src="js/onboarding.js"></script>
-<script src="js/views.js"></script>
-<script src="js/drawer.js"></script>
+<body>
+<nav class="nav">
+<div class="logo">Thomas Shelby AI</div>
+<ul>
+<li><a href="#">Home</a></li>
+<li><a href="#categories">Categories</a></li>
+<li><a href="#tools">Tools</a></li>
+</ul>
+</nav>
+<section class="hero">
+<h1>Discover the Best AI Tools</h1>
+<p>Search, explore and bookmark AI tools.</p>
+<input id="search" placeholder="Search AI tools...">
+</section>
+<section id="categories" class="grid">
+<div class="cat">🤖 Chat</div>
+<div class="cat">🎨 Image</div>
+<div class="cat">🎬 Video</div>
+<div class="cat">💻 Coding</div>
+<div class="cat">📈 Productivity</div>
+</section>
+<section id="tools" class="cards"></section>
+<footer>© 2026 Thomas Shelby AI Tools</footer>
+<script src="script.js"></script>
 </body>
 </html>
